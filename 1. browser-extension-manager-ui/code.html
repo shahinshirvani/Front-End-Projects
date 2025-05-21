@@ -1,0 +1,38 @@
+<html lang="en">
+  <>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div>
+      <div>
+        <header>
+          <img src="assets/images/logo.svg" alt="extensions" />
+          <label for="extension"></label>
+          <input type="text" id="extensions" />
+        </header>
+      </div>
+      <div>
+        <div>
+          <h1>Extensions List</h1>
+          <button type="button" class="filter-btn" data-filter="all">
+            All
+          </button>
+          <button type="button" class="filter-btn" data-filter="active">
+            Active
+          </button>
+          <button type="button" class="filter-btn" data-filter="inactive">
+            Inactive
+          </button>
+        </div>
+        <div>
+          <script src="data.js"></script>
+          <div id="extensions-list"></div>
+          <script src="main.js"></script>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
