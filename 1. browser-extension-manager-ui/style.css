@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "italic_variable";
+  src: url("assets/fonts/NotoSans-Italic-VariableFont_wdth,wght.ttf")
+    format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "variable";
+  src: url("assets/fonts/NotoSans-VariableFont_wdth,wght.ttf")
+    format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 #extensions-list {
   display: flex;
   flex-wrap: wrap;
@@ -6,17 +22,19 @@
 }
 
 .extension-card {
+  position: relative; /* so children can be absolutely positioned */
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   width: 250px;
   padding: 16px;
+  padding-bottom: 40px; /* add space so toggle doesn’t overlap */
 }
 
 .card-header {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  justify-content: space-between;
+  align-items: left;
   margin-bottom: 10px;
 }
 
@@ -28,11 +46,67 @@
 .name {
   font-size: 18px;
   margin: 0;
+  font-family: "italic_variable", sans-serif;
 }
 
 .remove-btn {
+  position: absolute; 
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   height: 20px;
+  bottom: 25px;
+  left: 20px;
+}
+
+.extensions-list {
+  font-family: "italic_variable", sans-serif;
+}
+
+p {
+  font-family: "variable", sans-serif;
+  margin-bottom: 50px;
+}
+
+.toggle-switch {
+  position: absolute;
+  bottom: 25px;
+  right: 20px;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px; width: 16px;
+  left: 2px; bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #4CAF50;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
 }
