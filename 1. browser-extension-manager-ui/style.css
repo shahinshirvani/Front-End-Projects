@@ -31,21 +31,21 @@
   padding-bottom: 40px; /* add space so toggle doesn’t overlap */
 }
 
-.card-header {
+.card-text {
   display: flex;
-  justify-content: space-between;
-  align-items: left;
-  margin-bottom: 10px;
+  flex-direction: column;
+  text-align: left;
 }
 
 .logo {
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
 }
 
 .name {
   font-size: 18px;
-  margin: 0;
+  margin: 20px;
   font-family: "italic_variable", sans-serif;
 }
 
