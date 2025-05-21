@@ -15,7 +15,7 @@ data.forEach((item) => {
           <input type="checkbox" ${item.isActive ? "checked" : ""}>
           <span class="slider"></span>
         </label>
-      <button class="remove-btn">Remove</button>
+        <button class="remove-btn">Remove</button>
       </div>
     </div>
   `;
@@ -28,6 +28,21 @@ data.forEach((item) => {
   card.querySelector(".remove-btn").addEventListener("click", () => {
     card.remove();
   });
+
+  const filterButtons = document.querySelectorAll('.filter-btn');
+
+filterButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Remove 'selected' from all
+    filterButtons.forEach(b => b.classList.remove('selected'));
+    // Add 'selected' to clicked button
+    btn.classList.add('selected');
+
+    // Optional: filter logic based on btn.dataset.filter
+    const filter = btn.dataset.filter;
+    console.log("Filtering by:", filter);
+  });
+});
+
   container.appendChild(card);
-  card.classList.add("extension-card");
 });

@@ -6,26 +6,28 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div>
+    <div class="page">
       <div>
-        <header>
+        <header class="header">
           <img src="assets/images/logo.svg" alt="extensions" />
           <label for="extension"></label>
           <input type="text" id="extensions" />
         </header>
       </div>
-      <div>
-        <div>
-          <h1 class="extensions-list">Extensions List</h1>
-          <button type="button" class="filter-btn" data-filter="all">
-            All
-          </button>
-          <button type="button" class="filter-btn" data-filter="active">
-            Active
-          </button>
-          <button type="button" class="filter-btn" data-filter="inactive">
-            Inactive
-          </button>
+      <div class="body">
+        <div class="tab">
+          <h1>Extensions List</h1>
+          <div class="filter-group">
+            <button type="button" class="filter-btn selected" data-filter="all">
+              All
+            </button>
+            <button type="button" class="filter-btn" data-filter="active">
+              Active
+            </button>
+            <button type="button" class="filter-btn" data-filter="inactive">
+              Inactive
+            </button>
+          </div>
         </div>
         <div>
           <script src="data.js"></script>

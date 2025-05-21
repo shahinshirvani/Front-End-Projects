@@ -14,58 +14,132 @@
   font-style: normal;
 }
 
+.page {
+  background-color: hsl(217, 61%, 90%);
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+}
+
 #extensions-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
   padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.extension-card {
+.body {
+  max-width: 1400px; /* Match your card container width */
+  margin: 0 auto; /* Center the whole block */
+  padding: 0 20px;
+}
+
+.tab {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto 20px auto; /* center and add some spacing below */
+  padding: 0 90px;
+}
+
+.filter-group {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  /* margin-bottom: 20px; */
+}
+
+.filter-btn {
+  justify-content: center;
+  padding: 10px;
+  background-color: hsl(200, 60%, 99%); /* Neutral 200 */
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 80px;
+  height: 40px;
+  margin: 2px;
+  border: 1px solid hsl(0, 0%, 78%);
+}
+
+.filter-btn:hover {
+  border:  4px solid hsl(3, 77%, 44%);
+  padding: 5px;
+}
+
+.filter-btn.selected {
+  background-color: hsl(3, 77%, 44%);
+  color: hsl(200, 60%, 99%);
+  font-weight: bold;
+  padding: 5px;
+}
+
+.card {
   position: relative; /* so children can be absolutely positioned */
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-  width: 250px;
+  width: 350px;
   padding: 16px;
   padding-bottom: 40px; /* add space so toggle doesn’t overlap */
+  background-color: hsl(200, 60%, 99%);
+  margin: 1px;
 }
 
 .card-text {
   display: flex;
   flex-direction: column;
-  text-align: left;
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
 }
 
 .logo {
   width: 80px;
   height: 80px;
-  margin-right: 20px;
+  margin-right: 5px;
 }
 
 .name {
   font-size: 18px;
-  margin: 20px;
+  margin: 1px;
   font-family: "italic_variable", sans-serif;
 }
 
 .remove-btn {
   position: absolute; 
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border: 1px solid hsl(226, 11%, 37%);
+  border-radius: 10px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-  height: 20px;
+  height: 25px;
+  width: 65px;
   bottom: 25px;
   left: 20px;
+  background-color: hsl(200, 60%, 99%);
 }
 
-.extensions-list {
-  font-family: "italic_variable", sans-serif;
+.remove-btn:hover {
+  border:  3px solid hsl(3, 77%, 44%);
+  cursor: pointer;
 }
 
 p {
   font-family: "variable", sans-serif;
   margin-bottom: 50px;
+  font-size: 13px;;
 }
 
 .toggle-switch {
@@ -104,7 +178,7 @@ p {
 }
 
 input:checked + .slider {
-  background-color: #4CAF50;
+  background-color: hsl(3, 77%, 44%);
 }
 
 input:checked + .slider:before {
