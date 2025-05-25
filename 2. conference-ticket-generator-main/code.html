@@ -19,13 +19,19 @@
       </div>
       <div class="form-list">
         <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
-          <p>Upload your avatar</p>
-          <label for="avatarInput" id="dropZone">
-            <p>Drag & drop or click to upload</p>
-            <input type="file" id="avatarInput" name="avatar" accept="image/*" hidden required />
-            <img id="preview" src="#" alt="Avatar Preview"/>
+          <h3>Upload your avatar</h3>
+          <div for="avatarInput" id="dropZone">
+            <button type="button" id="uploadIconButton">
+             <img id="uploadIcon" src="./assets/images/icon-upload.svg" alt="Upload Icon" width="40" height="40" />
+            </button>
+            <p id='uploadText' style="margin: auto;">Drag & drop or click to upload</p>
+            <div>
+                <button type="button" id="changeImgBtn">Change Image</button>
+                <button type="button" id="removeImgBtn">Remove Image</button>
+            </div>
+            <input type="file" id="avatarInput" name="avatar" accept="image/*" width="50" height="50"/>
             <p id="error" style="color: red;"></p>
-          </label>
+          </div>
         </form>
       </div>
       <script src="main.js" defer></script>

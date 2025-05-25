@@ -1,9 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
   const input = document.getElementById("avatarInput");
-  const form = document.getElementById("uploadForm");
   const dropZone = document.getElementById("dropZone");
-  const preview = document.getElementById("preview");
   const error = document.getElementById("error");
+  const uploadButton = document.getElementById("uploadIconButton");
+  const removeImgBtn = document.getElementById('removeImgBtn')
+  const changeImgBtn = document.getElementById('changeImgBtn')
+
+  // Trigger file selection when icon is clicked
+  uploadButton.addEventListener("click", () => {
+    input.click();
+  });
 
   function validate(file) {
     const allowedTypes = ["image/jpeg", "image/png"];
@@ -11,11 +17,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!allowedTypes.includes(file.type)) {
       error.textContent = "Only PNG or JPG files are allowed.";
+      hidePreview();
       return false;
     }
 
     if (file.size > maxSize) {
       error.textContent = "File must be less than 500KB.";
+      hidePreview();
       return false;
     }
 
@@ -23,47 +31,61 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   }
 
-  function showPreveiw(file) {
+  function showPreview(file) {
     const reader = new FileReader();
     reader.onload = (e) => {
-      preview.src = e.target.result;
-      preview.style.display = "block";
+      uploadIcon.src = e.target.result;
+      uploadText.style.display = "none";
+      actionButtons.style.display = "flex";
     };
     reader.readAsDataURL(file);
   }
 
+  function hidePreview() {
+    uploadIcon.src = "./assets/images/icon-upload.svg";
+    uploadText.style.display = "block";
+    actionButtons.style.display = "none";
+  }
+
+  function handleFile(file) {
+    if (!file || !validate(file)) {
+      hidePreview();
+      return;
+    }
+
+    showPreview(file);
+  }
+
   input.addEventListener("change", () => {
     const file = input.files[0];
-    if (file && validate(file)) {
-      showPreveiw(file);
-    } else {
-      preview.style.display = "none";
-    }
+    handleFile(file);
   });
 
   dropZone.addEventListener("dragover", (e) => {
     e.preventDefault();
     dropZone.style.border = "2px dashed #aaa";
   });
+
   dropZone.addEventListener("dragleave", () => {
     dropZone.style.border = "none";
   });
+
   dropZone.addEventListener("drop", (e) => {
     e.preventDefault();
     dropZone.style.border = "none";
     const file = e.dataTransfer.files[0];
+
     if (file && validate(file)) {
-      input.files = e.dataTransfer.files;
-      showPreveiw(file);
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(file);
+      input.files = dataTransfer.files;
+      handleFile(file);
     } else {
-      preview.style.display = "none";
+      hidePreview();
     }
   });
-  form.addEventListener("submit", (e) => {
-    const file = input.file[0];
-    if (!file || !validate(file)) {
-      e.preventDefault();
-      error.textContent = "Please upload a valid PNG/JPG under 500KB.";
-    }
-  });
+
+  // Initial state
+  hidePreview();
+  error.textContent = "";
 });
