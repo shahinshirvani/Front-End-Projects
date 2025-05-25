@@ -3,8 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const dropZone = document.getElementById("dropZone");
   const error = document.getElementById("error");
   const uploadButton = document.getElementById("uploadIconButton");
-  const removeImgBtn = document.getElementById('removeImgBtn')
-  const changeImgBtn = document.getElementById('changeImgBtn')
+  const removeImgBtn = document.getElementById("removeImgBtn");
+  const changeImgBtn = document.getElementById("changeImgBtn");
+  const uploadIcon = document.getElementById("uploadIcon");
+  const uploadText = document.getElementById("uploadText");
+  const actionButtons = document.getElementById("actionButtons");
 
   // Trigger file selection when icon is clicked
   uploadButton.addEventListener("click", () => {
@@ -83,6 +86,18 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       hidePreview();
     }
+  });
+
+  // Remove image button
+  removeImgBtn.addEventListener("click", () => {
+    input.value = "";
+    hidePreview();
+    error.textContent = "";
+  });
+
+  // Change image button
+  changeImgBtn.addEventListener("click", () => {
+    input.click();
   });
 
   // Initial state
