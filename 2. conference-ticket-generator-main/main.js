@@ -20,13 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!allowedTypes.includes(file.type)) {
       error.textContent = "Only PNG or JPG files are allowed.";
-      hidePreview();
       return false;
     }
 
     if (file.size > maxSize) {
       error.textContent = "File must be less than 500KB.";
-      hidePreview();
       return false;
     }
 
@@ -48,15 +46,15 @@ document.addEventListener("DOMContentLoaded", () => {
     uploadIcon.src = "./assets/images/icon-upload.svg";
     uploadText.style.display = "block";
     actionButtons.style.display = "none";
+    error.textContent = "";
   }
 
   function handleFile(file) {
-    if (!file || !validate(file)) {
+    if (file && validate(file)) {
+      showPreview(file);
+    } else {
       hidePreview();
-      return;
     }
-
-    showPreview(file);
   }
 
   input.addEventListener("change", () => {
@@ -82,25 +80,21 @@ document.addEventListener("DOMContentLoaded", () => {
       const dataTransfer = new DataTransfer();
       dataTransfer.items.add(file);
       input.files = dataTransfer.files;
-      handleFile(file);
+      showPreview(file);
     } else {
       hidePreview();
     }
   });
 
-  // Remove image button
   removeImgBtn.addEventListener("click", () => {
     input.value = "";
     hidePreview();
-    error.textContent = "";
   });
 
-  // Change image button
   changeImgBtn.addEventListener("click", () => {
     input.click();
   });
 
-  // Initial state
+  // Initial UI setup
   hidePreview();
-  error.textContent = "";
 });
