@@ -1,0 +1,67 @@
+@font-face {
+  font-family: "variable";
+  src: url("./assets/fonts/VariableFont_wdth.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body {
+  z-index: 0;
+  background-size: cover;
+  background-image: url(./assets/images/background-desktop.png);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.content {
+    color: hsl(0, 0%, 100%);
+    font-family: "variable";
+}
+
+.title {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 20;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0; /* smaller space between image and text */
+}
+
+h1 {
+    font-weight: bold;
+    margin-top: 50px;
+    font-size: 60;
+}
+
+p {
+    opacity: 75%;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+#uploadForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#dropZone {
+    display: flex;
+    border: 1px dotted hsl(245, 15%, 58%);
+    border-radius: 15px;
+    padding: 30px;
+}

@@ -1,0 +1,34 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ticket</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="body">
+    <div class="content">
+      <div class="title">
+        <div class="header">
+          <img src="./assets/images/logo-full.svg" alt="logo" />
+        </div>
+        <h1>
+          Your Journey to Coding Conf<br />
+          2025 Starts Here
+        </h1>
+        <p>Secure your spot at next year's biggest coding conference.</p>
+      </div>
+      <div class="form-list">
+        <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
+          <p>Upload your avatar</p>
+          <label for="avatarInput" id="dropZone">
+            <p>Drag & drop or click to upload</p>
+            <input type="file" id="avatarInput" name="avatar" accept="image/*" hidden required />
+            <img id="preview" src="#" alt="Avatar Preview"/>
+            <p id="error" style="color: red;"></p>
+          </label>
+        </form>
+      </div>
+      <script src="main.js" defer></script>
+    </div>
+  </body>
+</html>
