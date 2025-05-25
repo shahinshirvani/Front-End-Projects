@@ -13,8 +13,15 @@
   font-style: normal;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .page {
   background-color: hsl(217, 61%, 90%);
+  padding: 20px;
 }
 
 .header {
