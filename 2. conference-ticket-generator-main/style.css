@@ -14,10 +14,25 @@ html, body {
 
 .body {
   z-index: 0;
-  background-size: cover;
-  background-image: url(./assets/images/background-desktop.png);
-  background-position: center;
-  background-repeat: no-repeat;
+  background-image: 
+    url(./assets/images/pattern-squiggly-line-top.svg),
+    url(./assets/images/pattern-squiggly-line-bottom-desktop.svg),
+    url(./assets/images/background-desktop.png);
+  
+  background-position: 
+    top right, 
+    bottom left, 
+    center;
+
+  background-repeat: 
+    no-repeat, 
+    no-repeat, 
+    no-repeat;
+
+  background-size:  
+    auto, 
+    auto,
+    cover;
 }
 
 .content {
@@ -26,8 +41,7 @@ html, body {
 }
 
 .title {
-    margin-top: 30px;
-    margin-bottom: 50px;
+    margin: 10px auto;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -59,6 +73,19 @@ p {
     align-items: center;
 }
 
+#fullName {
+    display: flex;
+    justify-content: center;
+    border: 1px solid hsl(245, 15%, 58%);
+    background-color: rgb(255, 255, 255, 100%);
+    color: white;
+    border-radius: 15px;
+    width: 440px;
+    height: 45px;
+    opacity: 20%;
+    z-index: 1;
+}
+
 #dropZone {
     display: flex;
     justify-content: center;
@@ -67,7 +94,7 @@ p {
     border-radius: 15px;
     padding: 30px;
     align-items: center;
-    width: 340px;
+    width: 380px;
     cursor: pointer;
     z-index: 1;
 }
@@ -111,4 +138,12 @@ p {
 #changeImgBtn:hover, #removeImgBtn:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+#error {
+  transition: color 0.1s ease;
+  margin-top: 15px;
+  font-family: "variable";
+  font-size: 80%;
+  opacity: 50%;
 }

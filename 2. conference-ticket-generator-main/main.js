@@ -20,15 +20,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!allowedTypes.includes(file.type)) {
       error.textContent = "Only PNG or JPG files are allowed.";
+      error.style.color = "red";
       return false;
     }
 
     if (file.size > maxSize) {
       error.textContent = "File must be less than 500KB.";
+      error.style.color = "red";
       return false;
     }
 
-    error.textContent = "";
+    error.textContent = "Upload your photo (JPG or PNG, max size is 500kb).";
+    error.style.color = "white";
     return true;
   }
 
@@ -38,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
       uploadIcon.src = e.target.result;
       uploadText.style.display = "none";
       actionButtons.style.display = "flex";
+      error.style.display = "none"
     };
     reader.readAsDataURL(file);
   }
@@ -46,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     uploadIcon.src = "./assets/images/icon-upload.svg";
     uploadText.style.display = "block";
     actionButtons.style.display = "none";
-    error.textContent = "";
+    error.style.display = "block"
   }
 
   function handleFile(file) {
