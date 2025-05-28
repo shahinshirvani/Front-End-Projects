@@ -1,51 +1,42 @@
 @font-face {
   font-family: "variable";
-  src: url("./assets/fonts/VariableFont_wdth.ttf")
-    format("truetype");
+  src: url("./assets/fonts/VariableFont_wdth.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .body {
   z-index: 0;
-  background-image: 
-    url(./assets/images/pattern-squiggly-line-top.svg),
+  background-image: url(./assets/images/pattern-squiggly-line-top.svg),
     url(./assets/images/pattern-squiggly-line-bottom-desktop.svg),
     url(./assets/images/background-desktop.png);
-  
-  background-position: 
-    top right, 
-    bottom left, 
-    center;
 
-  background-repeat: 
-    no-repeat, 
-    no-repeat, 
-    no-repeat;
+  background-position: top right, bottom left, center;
 
-  background-size:  
-    auto, 
-    auto,
-    cover;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+
+  background-size: auto, auto, cover;
 }
 
 .content {
-    color: hsl(0, 0%, 100%);
-    font-family: "variable";
+  color: hsl(0, 0%, 100%);
+  font-family: "variable";
+  text-align: center;
 }
 
 .title {
-    margin: 10px auto;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    font-size: 20;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 20;
 }
 .header {
   display: flex;
@@ -54,90 +45,94 @@ html, body {
   gap: 0; /* smaller space between image and text */
 }
 
-h1 {
-    font-weight: bold;
-    margin-top: 50px;
-    font-size: 60;
+h1,
+#getUserName {
+  font-weight: bold;
+  margin-top: 50px;
+  font-size: 60;
 }
 
 p {
-    opacity: 75%;
-    padding-bottom: 13px;
+  opacity: 75%;
+  padding-bottom: 13px;
 }
 
 #uploadForm {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-#fullName, #email, #githubUserName {
-    display: flex;
-    justify-content: center;
-    border: 1px solid hsl(0, 0%, 99%);
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-    border-radius: 15px;
-    width: 440px;
-    height: 45px;
-    opacity: 80%;
-    font-size: 20px;
-    padding-left: 1.5em;
-    font-family: "variable";
+#fullName,
+#email,
+#githubUserName {
+  display: flex;
+  justify-content: center;
+  border: 1px solid hsl(0, 0%, 99%);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-radius: 15px;
+  width: 440px;
+  height: 45px;
+  opacity: 80%;
+  font-size: 20px;
+  padding-left: 1.5em;
+  font-family: "variable";
 }
 
 #dropZone {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    border: 1px solid hsl(245, 15%, 58%);
-    border-radius: 15px;
-    align-items: center;
-    width: 440px;
-    cursor: pointer;
-    z-index: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid hsl(245, 15%, 58%);
+  border-radius: 15px;
+  align-items: center;
+  width: 440px;
+  cursor: pointer;
+  z-index: 1;
 }
 
 #preview {
-    display: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 10%;
+  display: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 10%;
 }
 
 #uploadIconButton {
-    display: flex;
-    justify-content: center;
-    background-color: hsl(245, 15%, 58%);
-    border: 1px solid hsl(245, 15%, 58%);
-    border-radius: 10%;
-    max-width: 38px;
-    margin: 25px 0 15px 0;
-    cursor: pointer;
+  display: flex;
+  justify-content: center;
+  background-color: hsl(245, 15%, 58%);
+  border: 1px solid hsl(245, 15%, 58%);
+  border-radius: 10%;
+  max-width: 38px;
+  margin: 25px 0 15px 0;
+  cursor: pointer;
 }
 
 #avatarInput {
-    display: none;
+  display: none;
 }
 
 #actionButtons {
-    display: none;
-    gap: 10px;
-    margin-top: 10px;
+  display: none;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-#removeImgBtn, #changeImgBtn {
-    border-radius: 10%;
-    background-color: hsl(245, 19%, 35%); /* 50% transparent black */
-    color: aliceblue;
-    opacity: 80%;
-
+#removeImgBtn,
+#changeImgBtn {
+  border-radius: 10%;
+  background-color: hsl(245, 19%, 35%); /* 50% transparent black */
+  color: aliceblue;
+  opacity: 80%;
 }
 
-#changeImgBtn:hover, #removeImgBtn:hover {
-    text-decoration: underline;
-    cursor: pointer;
+#changeImgBtn:hover,
+#removeImgBtn:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 #error {
@@ -152,10 +147,74 @@ h3 {
   width: 440px;
 }
 
-#nameError, #emailError, #githubError{
+#nameError,
+#emailError,
+#githubError {
   color: red;
   font-size: 80%;
   margin-top: 15px;
   height: 1em;
   font-family: "variable";
+}
+
+#submitButton {
+  cursor: pointer;
+  width: 440px;
+  border-radius: 15px;
+  height: 45px;
+  background-color: hsl(7, 88%, 67%);
+}
+
+#submitButton:hover {
+  background-color: hsl(7, 71%, 60%);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.username-highlight {
+  background: linear-gradient(135deg, hsl(7, 86%, 67%), hsl(0, 0%, 100%));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.email-highlight {
+  color: hsl(7, 88%, 67%);
+}
+
+.ticket {
+  position: relative;
+  display: inline-block;
+}
+
+.ticket-data {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  transform: scale(1.2);
+  transform-origin: top left;
+}
+
+.icon-upload {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  transform: scale(1.6);
+  transform-origin: bottom left;
+}
+
+#getUserNameTicket {
+  position: absolute;
+  left: -90px;
+  bottom: 10px;
+}
+
+#getGithubUserName {
+  position: absolute;
+  left: 81px;
+  bottom: -28px;
+}
+
+.github img {
+  position: absolute;
+  left: 58px;
+  bottom: 0;
 }
