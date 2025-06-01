@@ -7,17 +7,34 @@
   </head>
   <body>
     <div class="form-items">
-      <h1>Contact Us</h1>
-      <div class="fullName">
-        <div>
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" />
+      <form action="">
+        <h1>Contact Us</h1>
+        <div class="fullName">
+          <div class="name">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" />
+          </div>
+          <div class="name">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" />
+          </div>
         </div>
-        <div>
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" />
+        <div class="email">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" />
         </div>
-      </div>
+        <div class="checkbox">
+          <p>Query Type</p>
+          <label for="General-Enquiry" class="radio-box">
+            <input type="radio" name="queryType" id="General-Enquiry" />
+            General Enquiry
+          </label>
+          <label for="Support-Reqeuest" class="radio-box">
+            <input type="radio" name="queryType" id="Support-Reqeuest" />
+            Support Reqeuest
+          </label>
+        </div>
+      </form>
     </div>
   </body>
 </html>
