@@ -11,20 +11,26 @@
         <h1>Contact Us</h1>
         <div class="fullName">
           <div class="name">
-            <label for="firstName">First Name</label>
+            <label for="firstName"
+              >First Name&nbsp;&nbsp;<span>*</span></label
+            >
             <input type="text" id="firstName" name="firstName" />
           </div>
           <div class="name">
-            <label for="lastName">Last Name</label>
+            <label for="lastName"
+              >Last Name &nbsp;<span>*</span></label
+            >
             <input type="text" id="lastName" name="lastName" />
           </div>
         </div>
         <div class="email">
-          <label for="email">Email Address</label>
+          <label for="email"
+            >Email Address &nbsp;&nbsp;<span>*</span></label
+          >
           <input type="email" id="email" name="email" />
         </div>
         <div class="checkbox">
-          <p>Query Type</p>
+          <p class="query">Query Type &nbsp;<span>*</span></p>
           <label for="General-Enquiry" class="radio-box">
             <input type="radio" name="queryType" id="General-Enquiry" />
             General Enquiry
@@ -33,6 +39,16 @@
             <input type="radio" name="queryType" id="Support-Reqeuest" />
             Support Reqeuest
           </label>
+        </div>
+        <div class="message">
+          <p>Message &nbsp;<span>*</span></p>
+          <label for="messages">
+            <textarea class="textarea" name="messages" id="messages"></textarea>
+          </label>
+        </div>
+        <div class="checkboxForm">
+          <input type="checkbox" name="check" id="check" />
+          <label for="check">I consent to being contacted by the team &nbsp;<span>*</span></label>
         </div>
       </form>
     </div>
