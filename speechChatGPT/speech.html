@@ -33,7 +33,7 @@
 
       // Configure recognition parameters: continuous mode and initial language:contentReference[oaicite:9]{index=9}:contentReference[oaicite:10]{index=10}.
       recognition.continuous = true;             // keep listening until stopped (dictation mode):contentReference[oaicite:11]{index=11}
-      recognition.interimResults = false;       // only final results (no interim)
+      recognition.interimResults = true;
       recognition.lang = document.getElementById("languageSelect").value;  // set initial language
 
       // Update recognition language when user changes dropdown
@@ -60,6 +60,7 @@
       recognition.addEventListener("result", function(event) {
         for (let i = event.resultIndex; i < event.results.length; i++) {
           if (event.results[i].isFinal) {
+            console.log('event', event.results[i].isFinal)
             document.getElementById("transcript").value += event.results[i][0].transcript + " ";
           }
         }
