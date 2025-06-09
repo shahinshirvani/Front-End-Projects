@@ -1,85 +1,107 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>Speech Recognition Demo</title>
-</head>
-<body>
-  <h1>Speech Recognition Demo</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Speech Recognition Demo</title>
+  </head>
+  <body>
+    <h1>Speech Recognition Demo</h1>
 
-  <!-- Language selection dropdown -->
-  <label for="languageSelect">Choose Language:</label>
-  <select id="languageSelect">
-    <option value="en-US">English (US)</option>
-    <option value="fa-IR">Persian (Farsi)</option>
-  </select>
+    <!-- Language selection dropdown -->
+    <label for="languageSelect">Choose Language:</label>
+    <select id="languageSelect">
+      <option value="en-US">English (US)</option>
+      <option value="fa-IR">Persian (Farsi)</option>
+    </select>
 
-  <!-- Start/Stop buttons -->
-  <button id="startBtn">Start Recognition</button>
-  <button id="stopBtn" disabled>Stop Recognition</button>
+    <!-- Start/Stop buttons -->
+    <button id="startBtn">Start Recognition</button>
+    <button id="stopBtn" disabled>Stop Recognition</button>
 
-  <!-- Transcription output area -->
-  <br><br>
-  <textarea id="transcript" rows="10" cols="50"
-            placeholder="Recognition result will appear here..."></textarea>
+    <!-- Transcription output area -->
+    <br /><br />
+    <textarea
+      id="transcript"
+      rows="10"
+      cols="50"
+      placeholder="Recognition result will appear here..."
+    ></textarea>
 
-  <script>
-    // Initialize SpeechRecognition (with vendor prefix for compatibility):contentReference[oaicite:8]{index=8}.
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) {
-      alert("Speech Recognition API not supported. Please use a modern browser like Chrome or Edge.");
-    } else {
-      const recognition = new SpeechRecognition();
+    <script>
+      // Initialize SpeechRecognition (with vendor prefix for compatibility):contentReference[oaicite:8]{index=8}.
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        alert(
+          "Speech Recognition API not supported. Please use a modern browser like Chrome or Edge."
+        );
+      } else {
+        const recognition = new SpeechRecognition();
 
-      // Configure recognition parameters: continuous mode and initial language:contentReference[oaicite:9]{index=9}:contentReference[oaicite:10]{index=10}.
-      recognition.continuous = true;             // keep listening until stopped (dictation mode):contentReference[oaicite:11]{index=11}
-      recognition.interimResults = true;
-      recognition.lang = document.getElementById("languageSelect").value;  // set initial language
+        // Configure recognition parameters: continuous mode and initial language:contentReference[oaicite:9]{index=9}:contentReference[oaicite:10]{index=10}.
+        recognition.continuous = true; // keep listening until stopped (dictation mode):contentReference[oaicite:11]{index=11}
+        recognition.interimResults = true;
+        recognition.lang = document.getElementById("languageSelect").value; // set initial language
 
-      // Update recognition language when user changes dropdown
-      document.getElementById("languageSelect").addEventListener("change", function() {
-        recognition.lang = this.value;  // BCP-47 language tag (en-US or fa-IR):contentReference[oaicite:12]{index=12}
-      });
+        // Update recognition language when user changes dropdown
+        document
+          .getElementById("languageSelect")
+          .addEventListener("change", function () {
+            recognition.lang = this.value; // BCP-47 language tag (en-US or fa-IR):contentReference[oaicite:12]{index=12}
+          });
 
-      // Start button: begin speech recognition
-      document.getElementById("startBtn").addEventListener("click", function() {
-        document.getElementById("transcript").value = ""; // clear previous transcript
-        recognition.start();
-        this.disabled = true;
-        document.getElementById("stopBtn").disabled = false;
-      });
+        // Start button: begin speech recognition
+        document
+          .getElementById("startBtn")
+          .addEventListener("click", function () {
+            document.getElementById("transcript").value = ""; // clear previous transcript
+            recognition.start();
+            this.disabled = true;
+            document.getElementById("stopBtn").disabled = false;
+          });
 
-      // Stop button: stop speech recognition
-      document.getElementById("stopBtn").addEventListener("click", function() {
-        recognition.stop();
-        this.disabled = true;
-        document.getElementById("startBtn").disabled = false;
-      });
+        // Stop button: stop speech recognition
+        document
+          .getElementById("stopBtn")
+          .addEventListener("click", function () {
+            recognition.stop();
+            this.disabled = true;
+            document.getElementById("startBtn").disabled = false;
+          });
 
-      // Handle recognition results (append final transcript to textarea):contentReference[oaicite:13]{index=13}.
-      recognition.addEventListener("result", function(event) {
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-          if (event.results[i].isFinal) {
-            console.log('event', event.results[i].isFinal)
-            document.getElementById("transcript").value += event.results[i][0].transcript + " ";
-          }
+        function toEnDigit(s) {
+          return s.replace(
+            /[\u0660-\u0669\u06f0-\u06f9]/g, // Detect all Persian/Arabic Digit in range of their Unicode with a global RegEx character set
+            function (a) {
+              return a.charCodeAt(0) & 0xf;
+            } // Remove the Unicode base(2) range that not match
+          );
         }
-      });
 
-      // Handle errors (e.g. no microphone permission):contentReference[oaicite:14]{index=14}.
-      recognition.addEventListener("error", function(event) {
-        console.error('Speech recognition error:', event.error);
-        alert("Error occurred in recognition: " + event.error);
-      });
+        // Handle recognition results (append final transcript to textarea):contentReference[oaicite:13]{index=13}.
+        recognition.addEventListener("result", function (event) {
+          for (let i = event.resultIndex; i < event.results.length; i++) {
+            if (event.results[i].isFinal) {
+              let spokenText = event.results[i][0].transcript;
+              document.getElementById("transcript").value += spokenText + " ";
+            }
+          }
+        });
 
-      // Optional: when recognition ends naturally (user stops speaking, etc.)
-      recognition.addEventListener("end", function() {
-        // For continuous mode, you could restart here: recognition.start();
-        // For this UI, reset buttons:
-        document.getElementById("startBtn").disabled = false;
-        document.getElementById("stopBtn").disabled = true;
-      });
-    }
-  </script>
-</body>
+        // Handle errors (e.g. no microphone permission):contentReference[oaicite:14]{index=14}.
+        recognition.addEventListener("error", function (event) {
+          console.error("Speech recognition error:", event.error);
+          alert("Error occurred in recognition: " + event.error);
+        });
+
+        // Optional: when recognition ends naturally (user stops speaking, etc.)
+        recognition.addEventListener("end", function () {
+          // For continuous mode, you could restart here: recognition.start();
+          // For this UI, reset buttons:
+          document.getElementById("startBtn").disabled = false;
+          document.getElementById("stopBtn").disabled = true;
+        });
+      }
+    </script>
+  </body>
 </html>
