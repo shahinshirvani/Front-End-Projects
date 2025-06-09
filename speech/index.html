@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>Rapidcode.iR - سورس کد</title>
+    <link rel="stylesheet" href="static/css/main.css">
+	<link rel="stylesheet" href="static/css/lib/normalize.css">
+	<link rel="stylesheet" href="static/css/lib/skeleton.css">
+	<link rel="stylesheet" href="static/css/lib/persian-datepicker.min.css">
+</head>
+<body>
+    <div class="container">
+        <a id="introduce" href="https://rapidcode.ir" target="_blank">رپید کد • کتابخانه مجازی برنامه نویسان</a>
+
+        <form class="booking">
+		
+		<div class="row">
+			<input class="four columns button-primary" type="button" id="getUserVoiceData" value="جستجو بلیت">
+		</div>
+		
+		<div class="row">
+		<input class="six columns geobase" data-voice="origin" data-json-key="origin" readonly="readonly" type="text" id="originPlace" placeholder="مبدا">
+		<input class="six columns geobase" data-voice="destination" data-json-key="destination" readonly="readonly" type="text" id="destinationPlace" placeholder="مقصد">
+		</div>
+		
+		<div class="row">
+		<input class="six columns" data-voice="leavingDate" data-json-key="departureDate" readonly="readonly" type="text" id="leavingDate" placeholder="تاریخ رفت">
+		<input class="six columns" data-voice="numberOfPassenger" data-json-key="adult" readonly="readonly" type="text" id="NumberOfPassengers" placeholder="تعداد مسافران">
+		</div>
+		
+		</form>
+		
+		<div class="row list-content"></div>
+       
+    </div>
+
+	<script src="static/js/lib/jquery-3.2.1.min.js"></script>
+	<script src="static/js/lib/persian-date.min.js"></script>
+	<script src="static/js/lib/persian-datepicker.min.js"></script>
+    <script src="static/js/app.js"></script>
+	<script>
+		const datepickerDOM = $("#leavingDate");
+		window.dateObject = datepickerDOM.persianDatepicker(
+		{
+			"inline": false,
+			"format": "LLLL",
+			"viewMode": "day",
+			"initialValue": true,
+			"onSelect" : function(){ 
+				const currentDateState = date.dateObject.State.gregorian;
+			
+				window.selectedDate = `${currentDateState.year}-${(currentDateState.month + 1).toString().padStart(2, "0")}-${currentDateState.day.toString().padStart(2, "0")}`;
+				
+				dateObject.hide();
+				getTheVoiceResult(selectedDate);
+			}
+		});
+		
+		const date = dateObject.getState().view;
+	</script>
+</body>
+</html>

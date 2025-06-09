@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Voice Search</title>
+</head>
+<body>
+  <h2>Search by Voice</h2>
+
+  <form action="https://www.example.com/search">
+    <input type="search" id="q" name="q" size="60" placeholder="Say something...">
+    <input type="button" value="Click to Speak" id="start-btn">
+  </form>
+
+  <script type="text/javascript">
+    // Check for browser support
+    window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!window.SpeechRecognition) {
+      alert("Your browser does not support Speech Recognition. Use Chrome on HTTPS.");
+    } else {
+      // Define globally so button can access it
+      const recognition = new SpeechRecognition();
+      recognition.lang = 'en-US'; // or 'fa-IR' for Persian
+      recognition.interimResults = false;
+
+      // When speech is recognized
+      recognition.onresult = function(event) {
+        if (event.results.length > 0) {
+          const q = document.getElementById("q");
+          q.value = event.results[0][0].transcript;
+          q.form.submit(); // auto-submit after speech
+        }
+      };
+
+      recognition.onerror = function(event) {
+        console.error("Speech recognition error:", event.error);
+        alert("Speech recognition failed: " + event.error);
+      };
+
+      // Trigger on button click
+      document.getElementById("start-btn").addEventListener("click", () => {
+        recognition.start();
+      });
+    }
+  </script>
+</body>
+</html>

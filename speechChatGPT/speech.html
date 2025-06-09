@@ -31,6 +31,19 @@
       // Initialize SpeechRecognition (with vendor prefix for compatibility):contentReference[oaicite:8]{index=8}.
       const SpeechRecognition =
         window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      let replacements = [];
+
+      // Load JSON replacements
+      fetch("specialCharacter.json")
+        .then((response) => response.json())
+        .then((data) => {
+          replacements = data;
+        })
+        .catch((err) => {
+          console.error("Failed to load replacement rules:", err);
+        });
+
       if (!SpeechRecognition) {
         alert(
           "Speech Recognition API not supported. Please use a modern browser like Chrome or Edge."
@@ -69,26 +82,22 @@
             document.getElementById("startBtn").disabled = false;
           });
 
-        function toEnDigit(s) {
-          return s.replace(
-            /[\u0660-\u0669\u06f0-\u06f9]/g, // Detect all Persian/Arabic Digit in range of their Unicode with a global RegEx character set
-            function (a) {
-              return a.charCodeAt(0) & 0xf;
-            } // Remove the Unicode base(2) range that not match
-          );
-        }
-
-        // Handle recognition results (append final transcript to textarea):contentReference[oaicite:13]{index=13}.
         recognition.addEventListener("result", function (event) {
           for (let i = event.resultIndex; i < event.results.length; i++) {
             if (event.results[i].isFinal) {
               let spokenText = event.results[i][0].transcript;
+              // Apply replacements from JSON
+              replacements.forEach((rule) => {
+                spokenText = spokenText.replaceAll(
+                  rule.specialCharacter,
+                  rule.replacment
+                );
+              });
               document.getElementById("transcript").value += spokenText + " ";
             }
           }
         });
 
-        // Handle errors (e.g. no microphone permission):contentReference[oaicite:14]{index=14}.
         recognition.addEventListener("error", function (event) {
           console.error("Speech recognition error:", event.error);
           alert("Error occurred in recognition: " + event.error);

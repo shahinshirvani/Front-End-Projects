@@ -1,0 +1,18 @@
+[
+  {
+    "specialCharacter": "ویرگول",
+    "replacment": "،"
+  },
+  {
+    "specialCharacter": "نقطه",
+    "replacment": "."
+  },
+  {
+    "specialCharacter": "اینتر",
+    "replacment": "\n"
+  },
+  {
+    "specialCharacter": "علامت سوال",
+    "replacment": "؟"
+  }
+]
